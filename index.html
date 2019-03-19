@@ -21,7 +21,15 @@
         }
 
       });
+    var refreshTweets = document.createElement("button");
+    button.innerHTML = "Show new Twidds";
+    button.addEventListener("click", function() {
+      alert("Twidds Refreshed");
 
+    });
+    var body = document.getElementsByTagName("body")[0];
+    body.appendChild(button);
     </script>
   </body>
+
 </html>
