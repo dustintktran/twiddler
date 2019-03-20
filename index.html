@@ -3,32 +3,86 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <script>
-
       $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
+        // Create a user link
+        var createUserTag = function(){
+          var $user = $('<element id="btn" class="tweet" type="button" value="button"></element>');
+          $user.text('@' + tweet.user)
+          $user.click(function(){openUser(tweet.user)});
+          $user.appendTo($body);
+        } 
+        /* var $user = $('<button class="user"}"></button>');
+          $user.text('@' + tweet.user)
+          $user.appendTo($body);
+          */
 
+        // clears page and shows only twidds of the user
+        var openUser = function(username){
+          $(".tweet").empty();
+          for(var i = 0; i < streams.home.length-1; i++){
+            var tweet = streams.home[i]
+            if(tweet.user == username){
+            //  createUserTag();
+                      var $user = $('<element id="btn" class="tweet" type="button" value="button"></element>');
+          $user.text('@' + tweet.user)
+          $user.click(function(){openUser(tweet.user)});
+          $user.appendTo($body);
+              var $tweet = $('<div class="tweet"></div>');
+              $tweet.text('---' + tweet.message + '  ||Twidded at: ' + tweet.created_at);
+              $tweet.appendTo($body);
+            }
+          }
+        }
+
+        var $body = $('body');
+        $body.html('<h1 class="title"><b>Twiddler</b></h1>');
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
+        //  createUserTag();
+          var $user = $('<element id="btn" class="tweet" type="button" value="button"></element>');
+          $user.text('@' + tweet.user)
+          $user.click(function(){openUser(tweet.user)});
+          $user.appendTo($body);
+          var $tweet = $('<div class="tweet"</div>');
+          $tweet.text('---' + tweet.message + '  ||Twidded at: ' + tweet.created_at);
+
           $tweet.appendTo($body);
           index -= 1;
-        }
+        } 
+
+        // Twiddler Refresh button
+        var refreshTweets = document.createElement("button");
+        var currentTweet = streams.home.length-1;
+        refreshTweets.innerHTML = "Show New Twidds";
+        refreshTweets.addEventListener("click", function() {
+          for(var i = currentTweet; i < streams.home.length-1; i++){
+            var tweet = streams.home[i];
+       //     createUserTag();
+          var $user = $('<element id="btn" class="tweet" type="button" value="button"></element>');
+          $user.text('@' + tweet.user)
+          $user.click(function(){openUser(tweet.user)});
+          $user.appendTo($body);
+            var $tweet = $('<div class="tweet"></div>');
+            $tweet.text('---' + tweet.message + '  ||Twidded at: ' + tweet.created_at);
+            $tweet.appendTo($body);
+          }
+          currentTweet = streams.home.length-1;
+        });
+        var h1 = document.getElementsByTagName("h1")[0];
+        h1.appendChild(refreshTweets);
+
+        //test button
+   //     var $mracus = $('<button class="test"</button>');
+     //   $mracus.text('testButton')
+       // $mracus.appendTo($body);
+   //--------------------------------------------------------------
 
       });
-    var refreshTweets = document.createElement("button");
-    button.innerHTML = "Show new Twidds";
-    button.addEventListener("click", function() {
-      alert("Twidds Refreshed");
-
-    });
-    var body = document.getElementsByTagName("body")[0];
-    body.appendChild(button);
     </script>
   </body>
 
